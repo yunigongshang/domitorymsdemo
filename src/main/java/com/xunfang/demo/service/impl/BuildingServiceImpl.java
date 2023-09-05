@@ -56,7 +56,7 @@ public class BuildingServiceImpl extends ServiceImpl<BuildingMapper, Building> i
         }
         PageVo pageVo = new PageVo();
         pageVo.setTotal(resultPage.getTotal());
-        pageVo.setData(buildingList);
+        pageVo.setData(buildingVOList);
         return pageVo;
     }
     @Override

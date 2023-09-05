@@ -1,7 +1,10 @@
 package com.xunfang.demo.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.xunfang.demo.entity.Building;
+import com.xunfang.demo.entity.Dormitory;
+import com.xunfang.demo.entity.DormitoryAdmin;
 import com.xunfang.demo.entity.Student;
 import com.xunfang.demo.ruleform.SearchForm;
 import com.xunfang.demo.service.BuildingService;
@@ -13,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
+
+import java.util.List;
 
 /**
  * <p>
@@ -27,6 +32,12 @@ import org.springframework.stereotype.Controller;
 public class BuildingController {
     @Autowired
     public BuildingService buildingService;
+
+    /**
+     * 添加管理员
+     * @param building
+     * @return
+     */
     @PostMapping("/save")
     public ResultVO save(@RequestBody Building building){
         Boolean save = this.buildingService.save(building);
@@ -44,6 +55,17 @@ public class BuildingController {
         PageVo pageVo = this.buildingService.search(searchForm);
         return ResultUntil.success(pageVo);
     }
+    @DeleteMapping("/deleteById/{id}")
+    public ResultVO deleteById(@PathVariable("id")Integer id){
+        Boolean delete = this.buildingService.removeById(id);
+        if (!delete)return ResultUntil.fail();
+        return ResultUntil.success(null);
+    }
 
+    @GetMapping("/list")
+    public ResultVO list() {
+        List<Building> buildingList = this.buildingService.list();
+        return ResultUntil.success(buildingList);
+    }
 }
 

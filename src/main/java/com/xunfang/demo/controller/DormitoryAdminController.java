@@ -46,6 +46,13 @@ public class DormitoryAdminController {
         }
         return resultVO;
     }
+
+    /**
+     * 分页
+     * @param page
+     * @param size
+     * @return
+     */
     @GetMapping("/list/{page}/{size}")
     public ResultVO list(@PathVariable("page")Integer page,
                          @PathVariable("size")Integer size){

@@ -2,6 +2,7 @@ package com.xunfang.demo.service;
 
 import com.xunfang.demo.entity.Moveout;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xunfang.demo.vo.PageVo;
 
 /**
  * <p>
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface MoveoutService extends IService<Moveout> {
 
+    PageVo list(Integer page, Integer size);
 }

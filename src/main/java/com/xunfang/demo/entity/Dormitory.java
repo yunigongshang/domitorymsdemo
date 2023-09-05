@@ -23,15 +23,15 @@ import lombok.EqualsAndHashCode;
       @TableId(value = "id", type = IdType.AUTO)
       private Integer id;
 
-    private Integer buildingId;
+      private Integer buildingId;
 
-    private String name;
+      private String name;
 
-    private Integer type;
+      private Integer type;
 
-    private Integer available;
+      private Integer available;
 
-    private String telephone;
+      private String telephone;
 
 
 }
