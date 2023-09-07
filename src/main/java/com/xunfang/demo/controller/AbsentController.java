@@ -15,12 +15,9 @@ import com.xunfang.demo.until.ResultUntil;
 import com.xunfang.demo.vo.PageVo;
 import com.xunfang.demo.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -55,19 +52,25 @@ public class AbsentController {
         List<Building> dormitoryList = this.buildingService.list(queryWrapper);
         return ResultUntil.success(dormitoryList);
     }
-    @GetMapping("findDormitoryByBuildingId/{id}")
+    @GetMapping("/findDormitoryByBuildingId/{id}")
     public ResultVO findDormitoryByBuildingId(@PathVariable("id")Integer id){
         QueryWrapper<Dormitory> queryWrapper =new QueryWrapper<>();
         queryWrapper.eq("building_id",id);
         List<Dormitory> dormitoryList = this.dormitoryService.list(queryWrapper);
         return ResultUntil.success(dormitoryList);
     }
-    @GetMapping("findStudentByDormitoryId/{id}")
+    @GetMapping("/findStudentByDormitoryId/{id}")
     public ResultVO findStudentByDormitoryId(@PathVariable("id")Integer id){
         QueryWrapper<Student> queryWrapper =new QueryWrapper<>();
         queryWrapper.eq("dormitory_id",id);
         List<Student> dormitoryList = this.studentService.list(queryWrapper);
         return ResultUntil.success(dormitoryList);
+    }
+    @PostMapping("/save")
+    public ResultVO save(@RequestBody Absent absent){
+        Boolean save=this.absentService.save(absent);
+        if (!save)return ResultUntil.fail();
+        return ResultUntil.success(null);
     }
 
 }

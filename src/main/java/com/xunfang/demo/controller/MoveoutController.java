@@ -1,6 +1,8 @@
 package com.xunfang.demo.controller;
 
 
+import com.xunfang.demo.entity.Moveout;
+import com.xunfang.demo.ruleform.SearchForm;
 import com.xunfang.demo.service.MoveoutService;
 import com.xunfang.demo.service.StudentService;
 import com.xunfang.demo.until.ResultUntil;
@@ -27,7 +29,7 @@ public class MoveoutController {
     @GetMapping("/list/{page}/{size}")
     public ResultVO list(@PathVariable("page")Integer page,
                          @PathVariable("size")Integer size){
-        PageVo pageVo = this.studentService.list(page,size);
+        PageVo pageVo = this.moveoutService.studentlist(page,size);
         return ResultUntil.success(pageVo);
     }
     @GetMapping("moveoutList/{page}/{size}")
@@ -36,6 +38,17 @@ public class MoveoutController {
         PageVo pageVo = this.moveoutService.list(page, size);
         return ResultUntil.success(pageVo);
     }
-
+    @PutMapping("/moveout/{id}/{value}")
+    public ResultVO moveout(@PathVariable("id")Integer id,
+                            @PathVariable("value")String value){
+        Moveout moveout = this.moveoutService.updatemov(id, value);
+        Boolean save=this.moveoutService.save(moveout);
+        return ResultUntil.success(save);
+    }
+    @GetMapping("/search")
+    public ResultVO search(SearchForm searchForm){
+        PageVo pageVo = this.moveoutService.search(searchForm);
+        return ResultUntil.success(pageVo);
+    }
 }
 

@@ -61,7 +61,7 @@ public class StudentController {
     }
     @DeleteMapping("/deleteById/{id}")
     public ResultVO deleteById(@PathVariable("id") Integer id){
-        boolean remove=this.studentService.removeById(id);
+        boolean remove=this.studentService.deleteById(id);
         if (!remove)return ResultUntil.fail();
         return ResultUntil.success(null);
     }

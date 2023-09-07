@@ -61,7 +61,7 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
     @Override
     public PageVo search(SearchForm searchForm){
         Page<Student>studentPage = new Page<>
-                (searchForm.getPage(),searchForm.getPage());
+                (searchForm.getPage(),searchForm.getSize());
         Page<Student>resultPage =null;
         if (searchForm.getValue().equals("")){
             resultPage = this.studentMapper
@@ -98,7 +98,7 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
             Dormitory dormitory = this.dormitoryMapper
                     .selectById(student.getDormitoryId());
             if (dormitory.getType()>dormitory.getAvailable()){
-                this.dormitoryMapper.addAvailable(dormitory.getId());
+                this.dormitoryMapper.addAvailable(dormitory.getAvailable()+1);
             }
         }catch (Exception e){
             return false;
