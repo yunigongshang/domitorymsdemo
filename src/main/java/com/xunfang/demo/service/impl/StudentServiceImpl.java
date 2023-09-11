@@ -98,7 +98,7 @@ public class StudentServiceImpl extends ServiceImpl<StudentMapper, Student> impl
             Dormitory dormitory = this.dormitoryMapper
                     .selectById(student.getDormitoryId());
             if (dormitory.getType()>dormitory.getAvailable()){
-                this.dormitoryMapper.addAvailable(dormitory.getAvailable()+1);
+                this.dormitoryMapper.addAvailable(dormitory.getId());
             }
         }catch (Exception e){
             return false;
