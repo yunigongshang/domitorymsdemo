@@ -19,6 +19,7 @@
 -- Table structure for table `absent`
 --
 create schema dormitory;
+use dormitory;
 
 DROP TABLE IF EXISTS `absent`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
